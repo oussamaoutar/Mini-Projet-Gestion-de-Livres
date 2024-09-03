@@ -125,11 +125,24 @@ void supprimerLivreMenu() {
     for(int i=0; i<count; i++) {
         if(strcmp(titres[i], titre) == 0) {
             indiceLivre = i;
+            for(int j=indiceLivre; j<count; j++) {
+                titres[j][40] = titres[j+1];
+                auteurs[j][40] = auteurs[j+1];
+                prix[j] = prix[j+1];
+                quantites[j] = quantites[j+1];
+                count--;
+            }
+            printf("Livre Supprimé !");
             break;
         } else {
             printf("Livre non trouvé !");
         }
     }
+    printf("\n1. Revenir au Menu Principal.\n2. Quitter");
+    scanf("%d", &choix);
+    if(choix == 1) menuPrincipal();
+    else exit;
+
 }
 
 void afficherTotalLivresEnStock() {
